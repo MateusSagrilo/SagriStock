@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ClassComponent from '../ClassComponent';
+// import ClassComponent from '../ClassComponent';
 import FuncComponent from '../FuncComponent';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <ClassComponent name="Mundo"/>
+        {/* <ClassComponent name="Mundo"/> */}
         <FuncComponent name='Mateus'/>
         <a
           className="App-link"
