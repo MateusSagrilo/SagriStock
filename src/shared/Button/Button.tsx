@@ -4,6 +4,7 @@ import './Button.css'
 type ButtonProps = {
     content?: string;
     onClick?: () => void
+    children: string
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -11,7 +12,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         className='AppButton'
         onClick={props.onClick}
     >
-        {props.content || 'Nameless button'}
+        {props.children || 'Nameless button'}
     </button>
 }
 
