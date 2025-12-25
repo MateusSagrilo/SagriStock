@@ -1,14 +1,12 @@
 import React from 'react'
 import './Container.css'
 
-type ContainerProps = {
-  children: React.ReactNode
-}
 
-const Container = (props: ContainerProps) => {
+
+const Container = () => {
   return (
     <div className="AppContainer">
-      {props.children}
+      
     </div>
   )
 }
