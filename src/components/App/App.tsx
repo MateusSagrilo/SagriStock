@@ -13,17 +13,15 @@ function App() {
     <div className="App">
       <Header title='AlgaStock'/>
       <Container>
-        <Button
-          onClick={() => window.alert('UIIU')}
-          >
-            Alert
-        </Button>
-        <Input
-          label='Street'
-          placeholder='E.g.: 15h Avenue'
-          value={street}
-          onChange= {e => setStreet(e.target.value)}
-          />
+        <ul>
+        {
+          ['Mateus', 'Marcela', 'Sandra'].map((name, index) => {
+            return <li key={index}>
+              {name}
+            </li>
+          })
+        }
+        </ul>
       </Container>
         
       </div>
