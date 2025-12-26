@@ -2,8 +2,10 @@ import React from 'react'
 import './Container.css'
 
 
-
-const Container = () => {
+type ContainerProps = {
+  children: React.ReactNode
+}
+const Container = (props: ContainerProps ) => {
   return (
     <div className="AppContainer">
       
