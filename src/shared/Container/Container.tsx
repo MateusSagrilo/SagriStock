@@ -8,7 +8,7 @@ type ContainerProps = {
 const Container = (props: ContainerProps ) => {
   return (
     <div className="AppContainer">
-      
+      {props.children}
     </div>
   )
 }

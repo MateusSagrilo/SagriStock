@@ -1,21 +1,17 @@
 import React from 'react';
 import './App.css';
 import Header from '../Header';
-import Container from '../../shared/Container/Container';
+import Container from '../../shared/Container';
 import Table from '../../shared/Table';
-
-
 
 function App() {
   return (
     <div className="App">
-      <Header title='AlgaStock'/>
+      <Header title="SagriStock" />
       <Container>
-        <Table/>
+        <Table />
       </Container>
-        
-      </div>
-    
+    </div>
   );
 }
 
