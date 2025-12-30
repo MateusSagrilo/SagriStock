@@ -10,30 +10,55 @@ const initialFormState = {
     stock: ''
 }
 
-const ProductForm = () => {
+export interface ProductCreator {
+    name: string
+    price: number
+    stock: number
+}
+
+interface ProductFormProps {
+    onSubmit: (product: ProductCreator) => void
+}
+function ProductForm({ onSubmit }: ProductFormProps) {
   const [form, setForm] = useState(initialFormState);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {value, name} = event.target
+    const { value, name } = event.target
 
-    setForm({
-        ...form,
-        [name]: value
-    })
+    setForm(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
+
+
+
+  const handleFormSubmit = () => {
+    const productDto = {
+        name: String(form.name),
+        price: parseFloat(form.price),
+        stock: Number(form.stock)
+    }
+
+    onSubmit(productDto)
+    setForm(initialFormState)
+  }
+
   return (
-    <Form onSubmit={() => console.log(form)
-    }>
+    <Form title="Product" onSubmit={handleFormSubmit}>
       <Input
         onChange={handleInputChange}
-        name="name" 
-        label="Name" 
+        name="name"
+        value={form.name}
+        label="Name"
         placeholder="E.g.: Cookie"
         required
-        />
+      />
+
       <Input
         onChange={handleInputChange}
-        name="price" 
+        name="price"
+        value={form.price}
         label="Price"
         type="number"
         step="0.01"
@@ -41,18 +66,21 @@ const ProductForm = () => {
         placeholder="E.g.: $2.00"
         required
       />
+
       <Input
         onChange={handleInputChange}
-        name="stock" 
-        label="Stock" 
-        type="number" 
-        min="0" 
+        name="stock"
+        value={form.stock}
+        label="Stock"
+        type="number"
+        min="0"
         placeholder="E.g.: 10"
         required
-        />
-      <Button>Submite</Button>
+      />
+
+      <Button>Submit</Button>
     </Form>
   );
-};
+}
 
 export default ProductForm;
