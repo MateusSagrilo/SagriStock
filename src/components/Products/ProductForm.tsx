@@ -85,7 +85,7 @@ function ProductForm({ form, onSubmit, onUpdate  }: ProductFormProps) {
   }
 
   return (
-    <Form title="Product" onSubmit={handleFormSubmit}>
+    <Form title="Product form" onSubmit={handleFormSubmit}>
       <Input
         onChange={handleInputChange}
         name="name"
@@ -118,7 +118,11 @@ function ProductForm({ form, onSubmit, onUpdate  }: ProductFormProps) {
         required
       />
 
-      <Button>Submit</Button>
+      <Button>
+        {
+          formState.id ? 'Update' : 'Submit'
+        }
+      </Button>
     </Form>
   );
 }

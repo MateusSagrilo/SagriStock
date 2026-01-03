@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import "./App.css";
 import Header from "../Header";
 import Container from "../../shared/Container";
 import Table, { TableHeader } from "../../shared/Table";
 import Products, { Product } from "../../shared/Table/Table.mockdata";
 import ProductForm, { ProductCreator } from "../Products/ProductForm";
+
 
 const headers: TableHeader[] = [
   { key: "id", value: "#" },
@@ -43,12 +45,38 @@ function App() {
     setUpdatingProduct(product);
   };
 
-  const handleDelete = (product: Product) => {
-    setProducts(products.filter((p) => p.id !== product.id));
-  };
+    const deleteProduct = (id: number) => {
+    setProducts(products.filter(product => product.id !== id))
+  }
+  const handleProductDelete = (product: Product) => {
+    Swal
+      .fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#09f',
+        cancelButtonColor: '#d33',
+        confirmButtonText: `Yes, delete ${product.name}!`
+      })
+      .then((result) => {
+        if (result.value) {
+          deleteProduct(product.id)
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+  }
 
   const handleDetail = (product: Product) => {
-    console.log(product);
+    Swal.fire(
+      'Product Details',
+      `${product.name}, costs $${product.price}. We have ${product.stock} unites available in stock.`,
+      'info'
+    )
   };
 
   return (
@@ -60,7 +88,7 @@ function App() {
           data={products}
           enableActions
           onEdit={handleEdit}
-          onDelete={handleDelete}
+          onDelete={handleProductDelete}
           onDetail={handleDetail}
         />
 
