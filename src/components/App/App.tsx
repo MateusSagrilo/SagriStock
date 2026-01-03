@@ -14,38 +14,61 @@ const headers: TableHeader[] = [
 ];
 
 function App() {
-  const [products, setProducts] = useState(Products)
-  const [updatingProduct, setUpdatingProduct] = useState<Product | undefined>(products[0])
+  const [products, setProducts] = useState(Products);
+  const [updatingProduct, setUpdatingProduct] = useState<Product | undefined>(
+    undefined
+  );
+
   const handleProductSubmit = (product: ProductCreator) => {
     setProducts([
       ...products,
       {
         id: products.length + 1,
-        ...product
-      }
-    ])
-  }
+        ...product,
+      },
+    ]);
+  };
 
   const handleProductUpdate = (newProduct: Product) => {
-    setProducts(products.map(product =>
-      product.id === newProduct.id
-      ? newProduct
-      : product
-    ))
-    
-    setUpdatingProduct(undefined)
-  }
+    setProducts(
+      products.map((product) =>
+        product.id === newProduct.id ? newProduct : product
+      )
+    );
+
+    setUpdatingProduct(undefined);
+  };
+
+  const handleEdit = (product: Product) => {
+    setUpdatingProduct(product);
+  };
+
+  const handleDelete = (product: Product) => {
+    setProducts(products.filter((p) => p.id !== product.id));
+  };
+
+  const handleDetail = (product: Product) => {
+    console.log(product);
+  };
+
   return (
     <div className="App">
       <Header title="SagriStock" />
       <Container>
-        <Table headers={headers} data={Products} />
+        <Table
+          headers={headers}
+          data={products}
+          enableActions
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onDetail={handleDetail}
+        />
 
         <ProductForm
           form={updatingProduct}
           onSubmit={handleProductSubmit}
           onUpdate={handleProductUpdate}
-          />
+        />
       </Container>
     </div>
   );
