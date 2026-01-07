@@ -50,7 +50,7 @@ function Table({ data, headers, enableActions, onEdit, onDelete, onDetail }: Tab
             {Object.keys(row).map((item, colIndex) =>
               item !== '$original' ? 
                 <td
-                  key={`${row.$original.id}-${colIndex}`}
+                  key={`${row.$original._id}-${colIndex}`}
                   className={indexedHeaders[item]?.right ? 'right' : ''}
                 >
                   {row[item]}
@@ -64,21 +64,21 @@ function Table({ data, headers, enableActions, onEdit, onDelete, onDetail }: Tab
               {
                 onEdit &&
                   <Button
-                      onClick={() => onEdit && onEdit(row)}>
+                      onClick={() => onEdit && onEdit(row.$original)}>
                         Edit
                       </Button>
               }
               {
                 onDelete &&
                   <Button
-                      onClick={() => onDelete && onDelete(row)}>
+                      onClick={() => onDelete && onDelete(row.$original)}>
                         Delete
                       </Button>
               }
               {
                 onDetail &&
                   <Button
-                      onClick={() => onDetail && onDetail(row)}>
+                      onClick={() => onDetail && onDetail(row.$original)}>
                         Detail
                       </Button>
               }
