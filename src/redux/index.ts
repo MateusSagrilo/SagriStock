@@ -2,14 +2,14 @@ import {
   legacy_createStore as createStore,
   combineReducers,
   compose,
-  applyMiddleware
-} from 'redux'
-import {thunk} from 'redux-thunk'
-import Products from './Products/Products.reducer'
+  applyMiddleware,
+} from "redux";
+import { thunk, ThunkAction } from "redux-thunk";
+import Products from "./Products/Products.reducer";
 
 const reducers = combineReducers({
-  products: Products
-})
+  products: Products,
+});
 
 const store = createStore(
   reducers,
@@ -18,6 +18,17 @@ const store = createStore(
     // @ts-ignore
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
-)
+);
 
-export default store
+export interface Action<T = any> {
+  type: string;
+  payload?: T;
+}
+
+export type Thunk<T = any> = ThunkAction<
+  void,
+  typeof reducers,
+  unknown,
+  Action<T>
+>;
+export default store;
