@@ -2,6 +2,7 @@
 // import { Action } from "./Products.reducer"
 import { ProductCreator } from "../../components/Products/ProductForm"
 import { createAction } from '@reduxjs/toolkit'
+import { getAllProducts } from "../../services/Products.service"
 
 // export const insertNewProduct = (payload: ProductCreator): Action<ProductCreator> => {
 //   return {
@@ -9,6 +10,13 @@ import { createAction } from '@reduxjs/toolkit'
 //     payload
 //   }
 // }
+export const getProducts = () => async (dispatch: any) =>{
+  const products = await getAllProducts()
+  dispatch({
+    type: 'FETCH_PRODUCTS',
+    payload: products
+  })
+}
 
 export const insertNewProduct = createAction<ProductCreator>(
   'products/insertNewProduct'

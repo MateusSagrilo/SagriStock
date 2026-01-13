@@ -8,7 +8,8 @@ import { Product } from '../../shared/Table/Table.mockdata'
 import ProductForm, { ProductCreator } from './ProductForm'
 import Swal from 'sweetalert2'
 import { connect, useDispatch } from 'react-redux'
-import { insertNewProduct } from '../../redux/Products/Products.actions'
+import { getProducts, insertNewProduct } from '../../redux/Products/Products.actions'
+import { ThunkDispatch } from 'redux-thunk'
 
 const headers: TableHeader[] = [
   { key: 'id', value: '#' },
@@ -22,13 +23,12 @@ declare interface ProductsCRUDProps {
 }
 
 const ProductsCRUD: React.FC<ProductsCRUDProps> = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch() as ThunkDispatch<any, any, any>
   // const [products, setProducts] = useState<Product[]>([])
   const [updatingProduct, setUpdatingProduct] = useState<Product | undefined>(undefined)
 
   async function fetchData() {
-    // const _products = await getAllProducts()
-    // setProducts(_products)
+    dispatch(getProducts())
   }
 
   useEffect(() => {
