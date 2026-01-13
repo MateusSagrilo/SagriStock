@@ -1,5 +1,8 @@
 import React from 'react'
 import './Header.css'
+import { RootState } from '../../redux'
+import { connect } from 'react-redux'
+import { Product } from '../../shared/Table/Table.mockdata'
 
 type HeaderProps = {
     title: string
@@ -10,4 +13,9 @@ const Header: React.FC<HeaderProps> = (props) => {
     </header>
 }
 
-export default Header
+const mapStateToProps = (state: RootState) => ({
+  firstProduct: state.products[0]
+})
+
+
+export default connect(mapStateToProps)(Header)
