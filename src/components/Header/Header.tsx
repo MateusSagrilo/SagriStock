@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 import { RootState } from '../../redux'
 import { connect } from 'react-redux'
-import { Product } from '../../shared/Table/Table.mockdata'
+
 
 type HeaderProps = {
     title: string
