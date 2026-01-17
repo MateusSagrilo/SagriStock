@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css';
 import HomeView from '../../views/HomeView';
 import NotFoundView from '../../views/NotFoundView';
+import LoginView from '../../views/LoginView';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeView />} />
+          <Route path="/login" element={<LoginView />} />
           <Route path="*" element={<NotFoundView />} />
         </Routes>
       </BrowserRouter>
