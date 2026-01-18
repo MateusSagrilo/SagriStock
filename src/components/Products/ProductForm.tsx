@@ -4,6 +4,7 @@ import Form from "../../shared/Form";
 import Input from "../../shared/Input";
 import Button from "../../shared/Button";
 import { Product } from "../../shared/Table/Table.mockdata";
+import withPermission from "../../utils/HOC/withPermission";
 
 
 interface InitialFormState {
@@ -127,4 +128,4 @@ function ProductForm({ form, onSubmit, onUpdate  }: ProductFormProps) {
   );
 }
 
-export default ProductForm;
+export default withPermission(['customer']) (ProductForm);
