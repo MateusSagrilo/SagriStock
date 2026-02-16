@@ -46,6 +46,7 @@ function ProductForm({ form, onSubmit, onUpdate  }: ProductFormProps) {
 
   useEffect(() => {
     setForm(initialFormState)
+    //eslint-disable-next-line
   },[form])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
